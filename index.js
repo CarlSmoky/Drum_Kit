@@ -1,19 +1,5 @@
 const buttons = document.querySelectorAll(".drum");
 
-for (let i = 0; i < buttons.length; i++) {
-
-  buttons[i].addEventListener("click", function() {
-    const buttonInnerHTML = this.innerHTML;
-    console.log(buttonInnerHTML);
-  });
-
-}
-
-document.addEventListener("keypress", (event) => {
-  makeSound(event.key);
-});
-
-
 const makeSound = (key) => {
 
   switch (key) {
@@ -57,3 +43,30 @@ const makeSound = (key) => {
 
   }
 }
+
+const buttonAnimation = (currentKey) => {
+
+  const activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
+
+for (let i = 0; i < buttons.length; i++) {
+
+  buttons[i].addEventListener("click", function() {
+    const buttonInnerHTML = this.innerHTML;
+    makeSound(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
+  });
+}
+
+document.addEventListener("keypress", (event) => {
+  
+  makeSound(event.key);
+  buttonAnimation(event.key);
+});
+
+
