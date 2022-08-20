@@ -4,5 +4,3 @@
 ## Final Product
 
 !["For Desktop"]()
-
-!["For Mobile"]()
